@@ -3,6 +3,7 @@ package com.example.application2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -36,6 +37,18 @@ public class UserController2 {
     m.addAttribute("userData", new UserEntity2()) ;
 
     return "user/new";
+  }
+
+  @RequestMapping("/user/create")
+  public String create(Model m,
+  @ModelAttribute UserEntity2 user 
+  ) {
+
+    m.addAttribute("userData", user);
+
+    userRepository2.save(user);
+
+    return "redirect:/user/list";
   }
 
 }
