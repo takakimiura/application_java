@@ -30,4 +30,12 @@ public class UserController2 {
 
   }
 
+  @RequestMapping("/user/new")
+  public String usernew(Model m) {
+
+    m.addAttribute("userData", new UserEntity2()) ;
+
+    return "user/new";
+  }
+
 }
