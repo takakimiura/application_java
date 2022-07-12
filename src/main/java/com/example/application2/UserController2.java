@@ -15,7 +15,7 @@ public class UserController2 {
   @RequestMapping("/user/list")
   public String list(Model m) {
 
-    m.addAttribute("userList", userRepository2.findAll());
+    m.addAttribute("userList", userRepository2.findAllOrderByIdDesc()); //idを降順で表示させる
 
     return "user/list";
   }
