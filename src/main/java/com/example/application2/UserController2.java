@@ -34,7 +34,7 @@ public class UserController2 {
   @RequestMapping("/user/new")
   public String usernew(Model m) {
 
-    m.addAttribute("userData", new UserEntity2()) ;
+    m.addAttribute("userData", new UserEntity2()) ; //新規の場合新しいインスタンスを生成する必要がある
 
     return "user/new";
   }
@@ -55,11 +55,21 @@ public class UserController2 {
   public String useredit(Model m,
   @PathVariable int id
   ) {
-    m.addAttribute("userData", userRepository2.findById(id).get());
+    m.addAttribute("userData", userRepository2.findById(id).get()); //既存のインスタンスをそのまま呼び出す
 
     return "/user/edit";
 
   }
 
+  @RequestMapping("/user/{id}/update")
+  public String userupdate(Model m,
+  @PathVariable int id,
+  @ModelAttribute UserEntity2 user
+  ) {
+    m.addAttribute("userData", user);
 
+    userRepository2.save(user);
+
+    return "redirect:/user/list";
+  }
 }
