@@ -51,4 +51,15 @@ public class UserController2 {
     return "redirect:/user/list";
   }
 
+  @RequestMapping("/user/{id}/edit")
+  public String useredit(Model m,
+  @PathVariable int id
+  ) {
+    m.addAttribute("userData", userRepository2.findById(id).get());
+
+    return "/user/edit";
+
+  }
+
+
 }
