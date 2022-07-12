@@ -72,4 +72,13 @@ public class UserController2 {
 
     return "redirect:/user/list";
   }
+
+  @RequestMapping("/user/{id}/delete")
+  public String userdelete(Model m,
+  @PathVariable int id
+  ) {
+    userRepository2.deleteById(id);
+
+    return "redirect:/user/list";
+  }
 }
